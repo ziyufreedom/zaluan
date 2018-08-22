@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观察者模式小例子</title>
+</head>
+<body>
+<script>
+    //定义发布者对象
+    let publisher = {
+        subscribers:{ //订阅者列表
+            any:[]
+        },
+        subscribe:function(fn,type){ //订阅了一个消息(方法)
+            //这个type是一个标识符，用来标识订阅的消息(方法)，没有传入自己的标识的，就用any
+            type = type || 'any';
+            if(this.subscribers[type]){ //如果是新进入的标识
+                this.subscribers[type] = [];
+            }
+            this.subscribers[type].push(fn);
+        },
+        visitSubscriber:function (action,arg,type) {
+            let pubtype = type || 'any',
+                subers = this.subscribers[pubtype]; //这是一个function列表
+            for(let i=0;i<subers.length;i++){
+                if(action == 'publish'){ //如果是发布消息arg传来的是调用函数的参数
+                    subers[i](arg);//这是一个函数，()是函数调用
+                }else{ //如果是取消订阅，arg传过来的是订阅的函数
+                    if(subers[i] == arg){
+                        subers.splice(i,1) //数组中删除取消订阅的那个消息(方法)
+                    }
+                }
+            }
+        },
+        publish:function (info, type) { //发布消息
+            this.visitSubscriber('publish',info,type);
+        },
+        unsubscribe:function (fn, type) {
+            this.visitSubscriber('unsub',fn,type);
+        }
+    };
+    //通过发布者对象制造发布者的方法
+    function makePublisher(obj){
+
+    }
+</script>
+</body>
+</html>
