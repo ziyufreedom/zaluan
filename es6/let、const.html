@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6学习之let，const</title>
+</head>
+<body>
+<script>
+    //let声明只在它的代码块中有效，例如循环中的i
+    let a = [],b=[];
+    for(let i=0;i<3;i++){
+        a[i] = function(){
+            console.log(i);
+        }
+    }
+    a[2](); //2
+    for(var j=0;j<3;j++){
+        b[j] = function(){
+            console.log(j);
+        }
+    }
+    b[0]();//3
+    for(let i=0;i<3;i++){
+        let i = 'ccc';
+        console.log(i);
+    }
+    //上面这个循环输出三次ccc，证明循环变量i和{}内部中的i不再同一个作用域，因为如果在同一个作用域，{}内部中的i就会报错，变量已定义，会报错是因为let不允许相同作用域下进行重复声明。
+    var tmp = 123;
+    {
+        //console.log(tmp); //这里会报错，不会用到上面的全局变量透明片是因为ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+        let tmp = 22;
+    }
+
+    function f() { console.log('I am outside!'); }
+    console.log(f);
+    (function () {
+        if (false) {
+            // 重复声明一次函数f
+            function f() { console.log('I am inside!'); }
+        }
+        console.log(f);//undefined
+        f();//这里报错，因为浏览器的兼容性
+    }())
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+<body>
+<script>
+    //这种是模式匹配相当于{'first':'Alice','last':'Green'} = { first, last }，然后first和last就被赋值了。
+    const full = ({ first, last }) => first + ' ' + last;
+    console.log(full({'first':'Alice','last':'Green'})); //Alice Green
+
+    function push(array, ...items) {
+        array.push(...items);
+        return array;
+    }
+    let c = push([1,2,3],4,5,6,7);
+    console.log(c);
+    let list = [1,2,3,4,5];
+
+    let a  = list[0], b= list.slice(1);
+    [d,...e] = list;
+    //上面的两个式子意义是相同的。
+</script>
+</body>
+</html>

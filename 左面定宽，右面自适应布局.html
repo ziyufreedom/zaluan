@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左面定宽，右面自适应布局</title>
+</head>
+<style>
+    .demo1,.demo2,.demo3{
+        min-height:20px;
+        overflow: hidden;
+    }
+    .demo1 .left{
+        float: left;
+        width:200px;
+        background-color:greenyellow;
+    }
+    .demo1 .right{
+        margin-left: 200px;
+        background-color:darkgreen;
+    }
+    .right{
+        color:#fff;
+    }
+    .demo2 .left{
+        float: left;
+        width:200px;
+        margin-right:-100%;
+        background-color:orange;
+    }
+    .demo2 .right{
+        float: right;
+        width:100%;
+    }
+    .demo2 .right .rin{
+        margin-left:200px;
+        background-color:orangered;
+    }
+    .demo3 .left{
+        width:200px;
+        float: left;
+        background-color:lightblue;
+    }
+    .demo3 .right{
+        border-left:200px solid lightblue;
+        background-color:royalblue;
+    }
+</style>
+<body>
+<div class="demo1">
+    <div class="left">left content</div>
+    <div class="right">right content</div>
+</div>
+<div class="demo2">
+    <div class="left">left content</div>
+    <div class="right"><div class="rin">right content</div></div>
+</div>
+<div class="demo3">
+    <div class="left">left content</div>
+    <div class="right">right content</div>
+</div>
+</body>
+</html>

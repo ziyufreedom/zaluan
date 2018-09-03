@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue原理的理解与相关实现</title>
+</head>
+<body>
+<script>
+    //观察者
+    function observe(data){
+        if(!data || typeof data !== 'object'){
+            return;
+        }
+        Object.keys(data).forEach(function (key) {
+            defineReactive(data,key,data[key]);
+        })
+    }
+    function defineReactive(data,key,val){
+        observe(data);//监测子属性
+        Object.defineProperty(data,key,{
+            enumerable:true,
+            configurable:false,
+            get:function () {
+                return val;
+            },
+            set:function (newval) {
+                //监听变量的变化
+                val = newval;
+            }
+        });
+    }
+    observe({'a':'ddd','b':'eee'});
+</script>
+</body>
+</html>
