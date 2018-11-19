@@ -1,5 +1,5 @@
 
-
+//http内置模块创建服务
 var http = require("http");
 
 http.createServer(function (request,response) {
