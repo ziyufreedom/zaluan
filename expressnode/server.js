@@ -11,4 +11,7 @@ server.use('/',function(req,res){
     //也需要一个end方法
     res.end();
 });
-server.listen(8888)
+server.listen(8888);
+// server.get()
+// server.post()
+// server.use()  这种方法上面的两种请求都能走进这里

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试后台login接口</title>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+    用户名：<input type="text" id='user'> <br>
+    密码：<input type="password" id='pass'> <br>
+    <input type="button" id='regbtn' value='注册'>
+    <input type="button" id='loginbtn' value='登录'>
+    <script>
+        $(function () {
+            //访问当前页面之前需要先启动login.js然后访问时的地址是localhost:8888/login.html，接口才会好用
+            $('#regbtn').click(function () {
+                var username = $('#user').val();
+                var pass = $('#pass').val();
+            });
+            $('#loginbtn').click(function () {
+                var username = $('#user').val();
+                var pass = $('#pass').val();
+                $.get('/login?user=' + username + '&pass=' + pass, function (data) {
+                    console.log(data)
+                    alert(data.msg)
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
